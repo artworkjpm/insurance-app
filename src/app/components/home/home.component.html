@@ -1,9 +1,15 @@
-<app-ins-item *ngFor="let item of items" [item]="item"></app-ins-item>
+<!-- <app-ins-item *ngFor="let item of items" [item]="item"></app-ins-item> -->
 <form (ngSubmit)="applyFilter()">
   <mat-form-field>
-    <input matInput name="name" placeholder="Filter" [(ngModel)]="name" />
+    <input
+      matInput
+      name="name"
+      placeholder="Search for insurance product"
+      [(ngModel)]="name"
+    />
   </mat-form-field>
-  <button type="submit">Submit</button>
+  <button mat-raised-button type="submit">Submit</button>
+  <button mat-raised-button (click)="onClear()">Clear</button>
 </form>
 
 <table

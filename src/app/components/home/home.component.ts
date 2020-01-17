@@ -53,4 +53,8 @@ export class HomeComponent implements OnInit {
     console.log(this.dataSource, this.name);
     this.dataSource.filter = this.name;
   }
+
+  onClear() {
+    this.name = "";
+  }
 }
