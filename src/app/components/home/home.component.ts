@@ -55,6 +55,9 @@ export class HomeComponent implements OnInit {
   }
 
   onClear() {
+    this.onSubmit = false;
     this.name = "";
+
+    console.log(this.onSubmit);
   }
 }
