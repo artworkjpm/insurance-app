@@ -1,33 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { MatTableDataSource } from "@angular/material/table";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource, MatSort } from "@angular/material";
 
 import { InsService } from "src/app/services/ins.service";
 import { Item } from "../../models/InsItem";
-
-/* export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: "Hydrogen", weight: 1.0079, symbol: "H" },
-  { position: 2, name: "Helium", weight: 4.0026, symbol: "He" },
-  { position: 3, name: "Lithium", weight: 6.941, symbol: "Li" },
-  { position: 4, name: "Beryllium", weight: 9.0122, symbol: "Be" },
-  { position: 5, name: "Boron", weight: 10.811, symbol: "B" },
-  { position: 6, name: "Carbon", weight: 12.0107, symbol: "C" },
-  { position: 7, name: "Nitrogen", weight: 14.0067, symbol: "N" },
-  { position: 8, name: "Oxygen", weight: 15.9994, symbol: "O" },
-  { position: 9, name: "Fluorine", weight: 18.9984, symbol: "F" },
-  { position: 10, name: "Neon", weight: 20.1797, symbol: "Ne" },
-  { position: 11, name: "Neon", weight: 20.1797, symbol: "Ne" }
-]; */
-
-/**
- * @title Table with filtering
- */
 
 @Component({
   selector: "app-home",
@@ -37,27 +13,42 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class HomeComponent implements OnInit {
   items: Item[];
   name: string;
-  onSubmit: boolean = false;
+  onSubmit: boolean = true;
   dataSource: any;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private inService: InsService) {}
   ngOnInit() {
-    this.items = this.inService.getIns();
-    this.dataSource = new MatTableDataSource(this.items);
+    /*  this.inService.getIns().subscribe(items => {
+      this.items = items;
+    }); */
   }
 
-  displayedColumns: string[] = ["id", "name", "brand", "kind"];
+  displayedColumns: string[] = ["brand", "name", "kind", "price", "id"];
 
-  applyFilter() {
-    this.onSubmit = true;
-    console.log(this.dataSource, this.name);
-    this.dataSource.filter = this.name;
+  searchIns() {
+    this.inService.getIns().subscribe(items => {
+      this.items = items;
+      this.onSubmit = false;
+      this.dataSource = new MatTableDataSource(this.items);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.filter = this.name;
+      //console.log(this.dataSource, this.name);
+    });
   }
 
   onClear() {
-    this.onSubmit = false;
+    this.onSubmit = true;
     this.name = "";
+    //console.log(this.onSubmit);
+  }
 
-    console.log(this.onSubmit);
+  getPrice(price: string) {
+    return parseFloat(price).toFixed(2);
+  }
+  getImage(imageName: string) {
+    return `../../assets/SingularCoverData/images/${imageName}`;
   }
 }

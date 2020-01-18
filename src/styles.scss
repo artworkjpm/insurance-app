@@ -11,5 +11,22 @@ body {
 .container {
   margin: 0 auto;
   padding: 0 15px;
-  width: 600px;
+  width: 800px;
+}
+
+.submit {
+  button {
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+.brand-image {
+  height: 30px;
+}
+
+.brandCont {
+  max-width: 50px;
+  text-align: center;
+  padding: 10px 0px;
 }

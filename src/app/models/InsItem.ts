@@ -2,8 +2,8 @@ export class Item {
   "id": string;
   "name": string;
   "brand": string;
-  "brand-image": string;
+  "brandImage": string;
   "kind": string;
-  "Kind-image": string;
+  "kindImage": string;
   "price": string;
 }
