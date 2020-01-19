@@ -39,11 +39,9 @@ export class HomeComponent implements OnInit {
     //the form uses NgModel of this.name to decide what to filter
     this.dataSource.filter = this.name;
   }
-
   onClear() {
     this.onSubmit = true;
     this.name = "";
-    //console.log(this.onSubmit);
     this.ngOnInit();
   }
 
@@ -63,19 +61,13 @@ export class HomeComponent implements OnInit {
         kindImage: x.kindImage
       };
     });
-    //console.log(this.insTypes);
   }
   showListByKind(kind: string) {
-    console.log(kind);
     this.onSubmit = false;
     const separateKind = this.items.reduce((acc, item) => {
       (acc[item.kind] || (acc[item.kind] = [])).push(item);
       return acc;
     }, {});
-
-    console.log(separateKind);
-
-    //this.items = separateKind;
     this.dataSource = new MatTableDataSource(separateKind[kind]);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

@@ -12,7 +12,7 @@ export class InsService {
 
   constructor(private http: HttpClient) {}
 
-  //I made an observable to me like a real life scenario of an api call
+  //I made an observable to replicate a real life scenario of an api call
   getIns(): Observable<Item[]> {
     return this.http.get<Item[]>(this.insUrl);
   }

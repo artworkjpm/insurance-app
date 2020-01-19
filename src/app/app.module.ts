@@ -11,6 +11,7 @@ import { InsItemComponent } from "./components/ins-item/ins-item.component";
 import { TableComponent } from "./components/table/table.component";
 import { MaterialModule } from "./material/material.module";
 import { FormsModule } from "@angular/forms";
+import { TopNavComponent } from './components/top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from "@angular/forms";
     HomeComponent,
     AboutComponent,
     InsItemComponent,
-    TableComponent
+    TableComponent,
+    TopNavComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import {
+  MatToolbarModule,
   MatButtonModule,
   MatTableModule,
   MatInputModule,
@@ -10,6 +11,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatChipsModule } from "@angular/material/chips";
 
 const MaterialComponents = [
+  MatToolbarModule,
   MatButtonModule,
   MatTableModule,
   MatFormFieldModule,
