@@ -31,8 +31,8 @@
     "name": "<mis_datos>",
     "brand": "AXA",
     "brandImage": "brand_axa.png",
-    "kind": "cybersecurity",
-    "kindImage": "kind_cibersecurity.png",
+    "kind": "Cybersecurity",
+    "kindImage": "kind_cybersecurity.png",
     "price": "1010"
   },
   {
@@ -76,8 +76,8 @@
     "name": "Gandalf",
     "brand": "generali",
     "brandImage": "brand_generali.png",
-    "kind": "cybersecurity",
-    "kindImage": "kind_cibersecurity.png",
+    "kind": "Cybersecurity",
+    "kindImage": "kind_cybersecurity.png",
     "price": "2010"
   },
   {

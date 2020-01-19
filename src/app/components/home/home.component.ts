@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   dataSource: any;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  insTypes: String[];
 
   constructor(private inService: InsService) {}
   ngOnInit() {
@@ -35,6 +36,8 @@ export class HomeComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.dataSource.filter = this.name;
+      this.insTypes = [...new Set(this.items.map(a => a.kind))];
+      console.log(this.insTypes);
       //console.log(this.dataSource, this.name);
     });
   }

@@ -7,6 +7,7 @@ import {
 } from "@angular/material";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatChipsModule } from "@angular/material/chips";
 
 const MaterialComponents = [
   MatButtonModule,
@@ -14,7 +15,8 @@ const MaterialComponents = [
   MatFormFieldModule,
   MatInputModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatChipsModule
 ];
 
 @NgModule({
