@@ -5,14 +5,18 @@
       <input
         matInput
         name="name"
-        placeholder="Search for insurance..."
+        placeholder="Search for product..."
         [(ngModel)]="name"
       />
     </mat-form-field>
     <div class="choices">
       <div class="submit">
         <button mat-raised-button type="submit">Submit</button>
-        <button mat-raised-button type="button" (click)="onClear()">
+        <button
+          mat-raised-button
+          type="button"
+          (click)="onClear(); isClicked = -1"
+        >
           Clear
         </button>
       </div>
@@ -20,8 +24,8 @@
         <mat-chip-list aria-label="Insurance">
           <mat-chip
             *ngFor="let item of insTypes; let i = index"
-            (click)="isClicked = i; getKind(item.kind)"
-            [class.chipGreen]="isClicked == i"
+            (click)="isClicked = i; showListByKind(item.kind)"
+            [class.chipGreen]="isClicked == i && !onSubmit"
             ><img
               [src]="getImage(item.kindImage)"
               class="kind-image"

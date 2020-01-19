@@ -12,6 +12,7 @@ import { Item } from "../../models/InsItem";
 })
 export class HomeComponent implements OnInit {
   items: Item[];
+  kinds: Item[];
   name: string;
   onSubmit: boolean = true;
   dataSource: any;
@@ -23,10 +24,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.inService.getIns().subscribe(items => {
       this.items = items;
+      this.kinds = items;
       this.dataSource = new MatTableDataSource(this.items);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      this.dataSource.filter = this.name;
       this.getTypes();
     });
   }
@@ -35,12 +36,15 @@ export class HomeComponent implements OnInit {
 
   searchIns() {
     this.onSubmit = false;
+    //the form uses NgModel of this.name to decide what to filter
+    this.dataSource.filter = this.name;
   }
 
   onClear() {
     this.onSubmit = true;
     this.name = "";
     //console.log(this.onSubmit);
+    this.ngOnInit();
   }
 
   getPrice(price: string) {
@@ -50,19 +54,30 @@ export class HomeComponent implements OnInit {
     return `../../assets/SingularCoverData/images/${imageName}`;
   }
   getTypes() {
-    let removeDuplicates = this.items.filter(
+    let removeDuplicates = this.kinds.filter(
       (v, i, a) => a.findIndex(t => t.kind === v.kind) === i
     );
-
     this.insTypes = removeDuplicates.map(x => {
       return {
         kind: x.kind,
         kindImage: x.kindImage
       };
     });
-    console.log(this.insTypes);
+    //console.log(this.insTypes);
   }
-  getKind(kind: string) {
+  showListByKind(kind: string) {
     console.log(kind);
+    this.onSubmit = false;
+    const separateKind = this.items.reduce((acc, item) => {
+      (acc[item.kind] || (acc[item.kind] = [])).push(item);
+      return acc;
+    }, {});
+
+    console.log(separateKind);
+
+    //this.items = separateKind;
+    this.dataSource = new MatTableDataSource(separateKind[kind]);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }
