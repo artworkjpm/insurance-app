@@ -17,29 +17,24 @@ export class HomeComponent implements OnInit {
   dataSource: any;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  insTypes: String[];
+  insTypes: Array<{ kind: string; kindImage: string }>;
 
   constructor(private inService: InsService) {}
   ngOnInit() {
-    /*  this.inService.getIns().subscribe(items => {
+    this.inService.getIns().subscribe(items => {
       this.items = items;
-    }); */
+      this.dataSource = new MatTableDataSource(this.items);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.filter = this.name;
+      this.getTypes();
+    });
   }
 
   displayedColumns: string[] = ["brand", "name", "kind", "price", "id"];
 
   searchIns() {
-    this.inService.getIns().subscribe(items => {
-      this.items = items;
-      this.onSubmit = false;
-      this.dataSource = new MatTableDataSource(this.items);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.filter = this.name;
-      this.insTypes = [...new Set(this.items.map(a => a.kind))];
-      console.log(this.insTypes);
-      //console.log(this.dataSource, this.name);
-    });
+    this.onSubmit = false;
   }
 
   onClear() {
@@ -53,5 +48,18 @@ export class HomeComponent implements OnInit {
   }
   getImage(imageName: string) {
     return `../../assets/SingularCoverData/images/${imageName}`;
+  }
+  getTypes() {
+    let removeDuplicates = this.items.filter(
+      (v, i, a) => a.findIndex(t => t.kind === v.kind) === i
+    );
+
+    this.insTypes = removeDuplicates.map(x => {
+      return {
+        kind: x.kind,
+        kindImage: x.kindImage
+      };
+    });
+    console.log(this.insTypes);
   }
 }

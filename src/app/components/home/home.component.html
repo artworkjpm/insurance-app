@@ -18,17 +18,14 @@
       </div>
       <div class="chip-space">
         <mat-chip-list aria-label="Insurance">
-          <mat-chip
+          <mat-chip *ngFor="let item of insTypes"
             ><img
-              src="../../assets/SingularCoverData/images/kind_car.png"
-              alt="Car Insurance"
+              [src]="getImage(item.kindImage)"
               class="brand-image"
+              alt="{{ item.kind }}"
             />
-            <span class="chip-space">Coche</span></mat-chip
+            <span class="chip-space">{{ item.kind }}</span></mat-chip
           >
-          <mat-chip>Two fish</mat-chip>
-          <mat-chip color="primary" selected>Primary fish</mat-chip>
-          <mat-chip color="accent" selected>Accent fish</mat-chip>
         </mat-chip-list>
       </div>
     </div>
@@ -60,7 +57,11 @@
         <td mat-cell *matCellDef="let item">
           <div class="brandCont">
             <div>
-              <img [src]="getImage(item.brandImage)" class="brand-image" />
+              <img
+                [src]="getImage(item.brandImage)"
+                class="brand-image"
+                alt="{{ item.brand }}"
+              />
             </div>
             <div>
               {{ item.brand }}
