@@ -18,10 +18,13 @@
       </div>
       <div class="chip-space">
         <mat-chip-list aria-label="Insurance">
-          <mat-chip *ngFor="let item of insTypes"
+          <mat-chip
+            *ngFor="let item of insTypes; let i = index"
+            (click)="isClicked = i; getKind(item.kind)"
+            [class.chipGreen]="isClicked == i"
             ><img
               [src]="getImage(item.kindImage)"
-              class="brand-image"
+              class="kind-image"
               alt="{{ item.kind }}"
             />
             <span class="chip-space">{{ item.kind }}</span></mat-chip

@@ -62,4 +62,7 @@ export class HomeComponent implements OnInit {
     });
     console.log(this.insTypes);
   }
+  getKind(kind: string) {
+    console.log(kind);
+  }
 }

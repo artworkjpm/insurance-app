@@ -24,6 +24,9 @@ body {
 .brand-image {
   height: 30px;
 }
+.kind-image {
+  height: 20px;
+}
 
 .brandCont {
   padding: 10px 0px;
@@ -31,8 +34,15 @@ body {
 
 .chip-space {
   margin-left: 5px;
+  .chipGreen {
+    background-color: #a3eca3;
+  }
+
+  .mat-standard-chip:focus::after {
+    opacity: 0;
+  }
 }
 
 .choices {
-  display: flex;
+  display: -webkit-box;
 }
