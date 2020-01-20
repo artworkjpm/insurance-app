@@ -12,7 +12,6 @@ export class TopNavComponent implements OnInit {
   }
 
   ngOnInit() {}
-  onFavourites() {}
   incrementCount() {
     this.badgeCount++;
   }
@@ -21,7 +20,7 @@ export class TopNavComponent implements OnInit {
     this.badgeCount < 0 ? (this.badgeCount = 0) : this.badgeCount;
   }
 
-  clearCount() {
+  openModal() {
     this.badgeCount = 0;
   }
 }
