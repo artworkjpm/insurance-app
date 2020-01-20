@@ -2,5 +2,15 @@
   <div routerLink="">John Insurance</div>
   <div>
     <span routerLink="about">About</span>
+
+    <span (click)="clearCount()"
+      >Favourites
+      <mat-icon
+        class="badge-icon"
+        [matBadge]="badgeCount"
+        matBadgeColor="warn"
+        *ngIf="badgeCount > 0"
+      ></mat-icon>
+    </span>
   </div>
 </mat-toolbar>

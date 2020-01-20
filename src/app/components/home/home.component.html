@@ -1,4 +1,5 @@
 <!-- <app-ins-item *ngFor="let item of items" [item]="item"></app-ins-item> -->
+<app-top-nav></app-top-nav>
 <div>
   <form (ngSubmit)="searchIns()">
     <mat-form-field>
@@ -41,15 +42,17 @@
   <div class="mat-elevation-z8" [hidden]="onSubmit">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
       <!-- Price Column -->
+      <ng-container matColumnDef="addToFav">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let item" class="favorite">
+          <mat-icon class="red" (click)="decrement()">favorite</mat-icon>
+          <mat-icon (click)="increment()">favorite</mat-icon>
+        </td>
+      </ng-container>
+      <!-- Price Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-        <td mat-cell *matCellDef="let item">{{ getPrice(item.price) }} €</td>
-      </ng-container>
-
-      <!-- Id Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-        <td mat-cell *matCellDef="let item">{{ item.id }}</td>
+        <td mat-cell *matCellDef="let item">€{{ getPrice(item.price) }}</td>
       </ng-container>
 
       <!-- Name Column -->

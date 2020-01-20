@@ -1,13 +1,19 @@
 .navbar {
   justify-content: space-between;
+  margin-bottom: 20px;
   div {
     outline: none;
     cursor: pointer;
+  }
+  .mat-badge {
+    position: relative;
+    left: 8px;
+    top: 8px;
   }
 }
 
 span {
   outline: none;
-  padding-right: 1rem;
+  margin-right: 2rem;
   cursor: pointer;
 }
