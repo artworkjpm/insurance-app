@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit {
   onSubmit: boolean = true;
   dataSource: any;
   insTypes: Array<{ kind: string; kindImage: string }>;
+  showFavIndex: number;
+  showFavRed: boolean = false;
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -74,12 +77,11 @@ export class HomeComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-  increment() {
-    this.childComponent.incrementCount();
-    console.log(this.childComponent.badgeCount);
-  }
-
-  decrement() {
-    this.childComponent.decrementCount();
+  increment(item: boolean) {
+    if (item) {
+      this.childComponent.incrementCount();
+    } else {
+      this.childComponent.decrementCount();
+    }
   }
 }
