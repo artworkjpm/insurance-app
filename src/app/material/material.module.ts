@@ -11,6 +11,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatIconModule } from "@angular/material/icon";
+import { MatDialogModule } from "@angular/material/dialog";
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -22,7 +23,8 @@ const MaterialComponents = [
   MatSortModule,
   MatChipsModule,
   MatBadgeModule,
-  MatIconModule
+  MatIconModule,
+  MatDialogModule
 ];
 
 @NgModule({

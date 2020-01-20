@@ -77,13 +77,15 @@ export class HomeComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-  increment(clicked: boolean, item: object) {
+  increment(clicked: boolean, item: Item) {
     if (clicked) {
+      //console.log(item);
       this.childComponent.incrementCount();
-      console.log(item);
+      this.childComponent.addData(item);
     } else {
       this.childComponent.decrementCount();
-      console.log(item);
+      this.childComponent.removeData(item);
+      //console.log(item);
     }
   }
 }

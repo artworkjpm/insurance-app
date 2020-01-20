@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material";
+import { FavTableComponent } from "../fav-table/fav-table.component";
+import { Item } from "../../models/InsItem";
 
 @Component({
   selector: "app-top-nav",
@@ -7,11 +10,14 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TopNavComponent implements OnInit {
   badgeCount: number;
-  constructor() {
+  favDataArray: Array<object>;
+  constructor(public dialog: MatDialog) {
     this.badgeCount = 0;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.favDataArray = [];
+  }
   incrementCount() {
     this.badgeCount++;
   }
@@ -20,7 +26,20 @@ export class TopNavComponent implements OnInit {
     this.badgeCount < 0 ? (this.badgeCount = 0) : this.badgeCount;
   }
 
-  openModal() {
-    this.badgeCount = 0;
+  addData(data: object) {
+    this.favDataArray.push(data);
+    console.log(this.favDataArray);
+  }
+
+  removeData(data: Item) {
+    let removeItem = this.favDataArray
+      .map((item: Item) => item.id)
+      .indexOf(data.id);
+    this.favDataArray.splice(removeItem, 1);
+    console.log(this.favDataArray);
+  }
+
+  openDialog() {
+    this.dialog.open(FavTableComponent, { data: this.favDataArray });
   }
 }
