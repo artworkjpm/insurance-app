@@ -17,14 +17,15 @@ export class HomeComponent implements OnInit {
   onSubmit: boolean = true;
   dataSource: any;
   insTypes: Array<{ kind: string; kindImage: string }>;
+  displayedColumns: string[] = ["brand", "name", "kind", "price", "addToFav"];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-
   @ViewChild(TopNavComponent, { static: true }) childComponent: TopNavComponent;
 
   constructor(public inService: InsService) {}
   ngOnInit() {
+    //I get the products OnInit in order to obtain the product kinds, hogar, coche etc
     this.inService.getInsProducts().subscribe(items => {
       this.items = items;
       this.kinds = items;
@@ -34,8 +35,6 @@ export class HomeComponent implements OnInit {
       this.getTypes();
     });
   }
-
-  displayedColumns: string[] = ["brand", "name", "kind", "price", "addToFav"];
 
   searchIns() {
     this.onSubmit = false;
@@ -69,15 +68,4 @@ export class HomeComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-  /* addToFavTable(clicked: boolean, item: Item) {
-    if (clicked) {
-      //console.log(item);
-      this.inService.incrementCount();
-      this.inService.addData(item);
-    } else {
-      this.inService.decrementCount();
-      this.inService.removeData(item);
-      //console.log(item);
-    }
-  } */
 }

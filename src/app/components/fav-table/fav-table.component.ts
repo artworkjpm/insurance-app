@@ -17,6 +17,8 @@ import { CheckDeleteFavComponent } from "../check-delete-fav/check-delete-fav.co
 })
 export class FavTableComponent implements OnInit {
   dataSource: any;
+  showPrice: boolean = false;
+  displayedColumns: string[] = ["brand", "name", "kind", "addToFav"];
   constructor(
     public inService: InsService,
     private dialogRef: MatDialogRef<FavTableComponent>,
@@ -25,7 +27,6 @@ export class FavTableComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  //@ViewChild(TopNavComponent, { static: true }) childComponent: TopNavComponent;
 
   ngOnInit() {
     this.updateSize();
@@ -34,9 +35,12 @@ export class FavTableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  displayedColumns: string[] = ["brand", "name", "kind", "addToFav"];
   updateSize() {
     this.dialogRef.updateSize("600px", "100%");
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   onNoClick(): void {
@@ -46,15 +50,12 @@ export class FavTableComponent implements OnInit {
   checkRemove(clicked: boolean, item: Item, index: Number) {
     let deleteRef = this.dialog.open(CheckDeleteFavComponent);
     deleteRef.afterClosed().subscribe(result => {
-      if (result === "true") {
+      if (result === "remove") {
         this.inService.addToFavTable(false, item, index);
         this.ngOnInit();
-        //this.inService.addToFavTable(true, item);
+      } else {
+        item["clicked"] = true;
       }
     });
-    //alert("are you sure you want to remove this from favourites?");
-    //this.inService.addToFavTable(clicked, item);
-
-    //this.ngOnInit();
   }
 }

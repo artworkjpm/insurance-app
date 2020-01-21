@@ -1,3 +1,9 @@
 table.mat-table {
   width: 100%;
 }
+.mat-dialog-content {
+  max-height: unset;
+}
+mat-form-field {
+  display: block;
+}
