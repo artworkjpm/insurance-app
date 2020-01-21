@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { FavTableComponent } from "../fav-table/fav-table.component";
-import { Item } from "../../models/InsItem";
+import { InsService } from "src/app/services/ins.service";
 
 @Component({
   selector: "app-top-nav",
@@ -9,16 +9,12 @@ import { Item } from "../../models/InsItem";
   styleUrls: ["./top-nav.component.scss"]
 })
 export class TopNavComponent implements OnInit {
-  badgeCount: number;
-  favDataArray: Array<object>;
-  constructor(public dialog: MatDialog) {
-    this.badgeCount = 0;
-  }
+  constructor(public dialog: MatDialog, public inService: InsService) {}
 
   ngOnInit() {
-    this.favDataArray = [];
+    //this.favDataArray = [];
   }
-  incrementCount() {
+  /* incrementCount() {
     this.badgeCount++;
   }
   decrementCount() {
@@ -37,9 +33,9 @@ export class TopNavComponent implements OnInit {
       .indexOf(data.id);
     this.favDataArray.splice(removeItem, 1);
     console.log(this.favDataArray);
-  }
+  } */
 
   openDialog() {
-    this.dialog.open(FavTableComponent, { data: this.favDataArray });
+    this.dialog.open(FavTableComponent);
   }
 }

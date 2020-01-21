@@ -12,6 +12,7 @@ import { MaterialModule } from "./material/material.module";
 import { FormsModule } from "@angular/forms";
 import { TopNavComponent } from "./components/top-nav/top-nav.component";
 import { FavTableComponent } from "./components/fav-table/fav-table.component";
+import { CheckDeleteFavComponent } from "./components/check-delete-fav/check-delete-fav.component";
 
 @NgModule({
   declarations: [
@@ -20,9 +21,10 @@ import { FavTableComponent } from "./components/fav-table/fav-table.component";
     AboutComponent,
     InsItemComponent,
     TopNavComponent,
-    FavTableComponent
+    FavTableComponent,
+    CheckDeleteFavComponent
   ],
-  entryComponents: [FavTableComponent],
+  entryComponents: [FavTableComponent, CheckDeleteFavComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

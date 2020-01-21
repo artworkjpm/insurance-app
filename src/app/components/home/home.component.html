@@ -28,7 +28,7 @@
             (click)="isClicked = i; showListByKind(item.kind)"
             [class.chipGreen]="isClicked === i && !onSubmit"
             ><img
-              [src]="getImage(item.kindImage)"
+              [src]="inService.getImage(item.kindImage)"
               class="kind-image"
               alt="{{ item.kind }}"
             />
@@ -41,13 +41,14 @@
 
   <div class="mat-elevation-z8" [hidden]="onSubmit">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-      <!-- Price Column -->
+      <!-- Favorites Column -->
       <ng-container matColumnDef="addToFav">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-        <td mat-cell *matCellDef="let item" class="favorite">
+        <td mat-cell *matCellDef="let item; let i = index" class="favorite">
           <mat-icon
             (click)="
-              item.clicked = !item.clicked; increment(item.clicked, item)
+              item.clicked = !item.clicked;
+              inService.addToFavTable(item.clicked, item, i)
             "
             [ngClass]="{ red: item.clicked }"
             >favorite</mat-icon
@@ -57,7 +58,9 @@
       <!-- Price Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-        <td mat-cell *matCellDef="let item">€{{ getPrice(item.price) }}</td>
+        <td mat-cell *matCellDef="let item">
+          €{{ inService.getPrice(item.price) }}
+        </td>
       </ng-container>
 
       <!-- Name Column -->
@@ -73,7 +76,7 @@
           <div class="brandCont">
             <div>
               <img
-                [src]="getImage(item.brandImage)"
+                [src]="inService.getImage(item.brandImage)"
                 class="brand-image"
                 alt="{{ item.brand }}"
               />
@@ -91,7 +94,10 @@
         <td mat-cell *matCellDef="let item">
           <div class="brandCont">
             <div>
-              <img [src]="getImage(item.kindImage)" class="brand-image" />
+              <img
+                [src]="inService.getImage(item.kindImage)"
+                class="brand-image"
+              />
             </div>
             <div>
               {{ item.kind }}

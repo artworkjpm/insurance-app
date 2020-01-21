@@ -17,17 +17,15 @@ export class HomeComponent implements OnInit {
   onSubmit: boolean = true;
   dataSource: any;
   insTypes: Array<{ kind: string; kindImage: string }>;
-  showFavIndex: number;
-  showFavRed: boolean = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   @ViewChild(TopNavComponent, { static: true }) childComponent: TopNavComponent;
 
-  constructor(private inService: InsService) {}
+  constructor(public inService: InsService) {}
   ngOnInit() {
-    this.inService.getIns().subscribe(items => {
+    this.inService.getInsProducts().subscribe(items => {
       this.items = items;
       this.kinds = items;
       this.dataSource = new MatTableDataSource(this.items);
@@ -50,12 +48,6 @@ export class HomeComponent implements OnInit {
     this.ngOnInit();
   }
 
-  getPrice(price: string) {
-    return parseFloat(price).toFixed(2);
-  }
-  getImage(imageName: string) {
-    return `../../assets/SingularCoverData/images/${imageName}`;
-  }
   getTypes() {
     let removeDuplicates = this.kinds.filter(
       (v, i, a) => a.findIndex(t => t.kind === v.kind) === i
@@ -77,15 +69,15 @@ export class HomeComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-  increment(clicked: boolean, item: Item) {
+  /* addToFavTable(clicked: boolean, item: Item) {
     if (clicked) {
       //console.log(item);
-      this.childComponent.incrementCount();
-      this.childComponent.addData(item);
+      this.inService.incrementCount();
+      this.inService.addData(item);
     } else {
-      this.childComponent.decrementCount();
-      this.childComponent.removeData(item);
+      this.inService.decrementCount();
+      this.inService.removeData(item);
       //console.log(item);
     }
-  }
+  } */
 }
