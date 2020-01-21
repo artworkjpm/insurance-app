@@ -9,9 +9,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 .container {
-  margin: 0 auto;
   padding: 0 15px;
-  width: 800px;
+  /* td.mat-cell,
+  td.mat-footer-cell,
+  th.mat-header-cell {
+    padding: 0 10px;
+  } */
 }
 
 .submit {

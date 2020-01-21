@@ -13,6 +13,7 @@ import { FormsModule } from "@angular/forms";
 import { TopNavComponent } from "./components/top-nav/top-nav.component";
 import { FavTableComponent } from "./components/fav-table/fav-table.component";
 import { CheckDeleteFavComponent } from "./components/check-delete-fav/check-delete-fav.component";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CheckDeleteFavComponent } from "./components/check-delete-fav/check-del
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
