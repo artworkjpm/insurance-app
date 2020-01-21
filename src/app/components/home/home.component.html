@@ -54,7 +54,7 @@
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
       <!-- Favorites Column -->
       <ng-container matColumnDef="addToFav">
-        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let item; let i = index" class="favorite">
           <mat-icon
             (click)="

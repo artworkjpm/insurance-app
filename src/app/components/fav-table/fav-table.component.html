@@ -11,7 +11,7 @@
   <mat-table [dataSource]="dataSource" matSort>
     <!-- Favourite Column -->
     <ng-container matColumnDef="addToFav">
-      <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let item; let i = index" class="favorite">
         <mat-icon
           (click)="
