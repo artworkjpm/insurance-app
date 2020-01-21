@@ -1,19 +1,26 @@
 .navbar {
   justify-content: space-between;
   margin-bottom: 20px;
+
   div {
     outline: none;
     cursor: pointer;
   }
   .mat-badge {
     position: relative;
-    left: 8px;
-    top: 8px;
+    left: 0px;
+    top: 11px;
   }
 }
 
 span {
   outline: none;
-  margin-right: 2rem;
+  margin: 0 20px;
   cursor: pointer;
+}
+
+@media screen and (min-width: 720px) {
+  .navbar {
+    padding: 0 200px 0 100px;
+  }
 }
