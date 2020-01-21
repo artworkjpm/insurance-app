@@ -12,6 +12,7 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -24,7 +25,8 @@ const MaterialComponents = [
   MatChipsModule,
   MatBadgeModule,
   MatIconModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 ];
 
 @NgModule({

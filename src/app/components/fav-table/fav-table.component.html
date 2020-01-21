@@ -12,10 +12,10 @@
     <!-- Favourite Column -->
     <ng-container matColumnDef="addToFav">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let item; let i = index" class="favorite">
+      <mat-cell *matCellDef="let item" class="favorite">
         <mat-icon
           (click)="
-            item.clicked = !item.clicked; checkRemove(item.clicked, item, i)
+            item.clicked = !item.clicked; checkRemove(item.clicked, item)
           "
           [ngClass]="{ red: item.clicked }"
           >favorite</mat-icon

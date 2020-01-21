@@ -1,8 +1,8 @@
 <!-- <app-ins-item *ngFor="let item of items" [item]="item"></app-ins-item> -->
 
 <app-top-nav></app-top-nav>
-<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center">
-  <div>
+<div class="container">
+  <div fxLayout fxLayout.xs="column" fxLayoutAlign="center">
     <form (ngSubmit)="searchIns()">
       <mat-form-field>
         <input
@@ -41,100 +41,97 @@
       </div>
     </form>
   </div>
-</div>
-<div
-  class="container"
-  fxLayout
-  fxLayout.xs="column"
-  fxLayoutAlign="center"
-  fxLayoutGap="20px"
->
-  <div></div>
-  <div class="mat-elevation-z8 main-table" [hidden]="onSubmit">
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-      <!-- Favorites Column -->
-      <ng-container matColumnDef="addToFav">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let item; let i = index" class="favorite">
-          <mat-icon
-            (click)="
-              item.clicked = !item.clicked;
-              inService.addToFavTable(item.clicked, item, i)
-            "
-            [ngClass]="{ red: item.clicked }"
-            >favorite</mat-icon
+
+  <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div></div>
+    <div class="mat-elevation-z8 main-table" [hidden]="onSubmit">
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        <!-- Favorites Column -->
+        <ng-container matColumnDef="addToFav">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let item" class="favorite">
+            <mat-icon
+              (click)="
+                item.clicked = !item.clicked;
+                inService.addToFavTable(item.clicked, item)
+              "
+              [ngClass]="{ red: item.clicked }"
+              >favorite</mat-icon
+            >
+          </mat-cell>
+        </ng-container>
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Price</mat-header-cell
           >
-        </mat-cell>
-      </ng-container>
-      <!-- Price Column -->
-      <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          >Price</mat-header-cell
-        >
-        <mat-cell *matCellDef="let item">
-          €{{ inService.getPrice(item.price) }}
-        </mat-cell>
-      </ng-container>
+          <mat-cell *matCellDef="let item">
+            €{{ inService.getPrice(item.price) }}
+          </mat-cell>
+        </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          >Name</mat-header-cell
-        >
-        <mat-cell *matCellDef="let item">{{ item.name }}</mat-cell>
-      </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let item" class="name-cell">{{
+            item.name
+          }}</mat-cell>
+        </ng-container>
 
-      <!-- Brand Column -->
-      <ng-container matColumnDef="brand">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          >Insurer</mat-header-cell
-        >
-        <mat-cell *matCellDef="let item">
-          <div class="brandCont">
-            <div>
-              <img
-                [src]="inService.getImage(item.brandImage)"
-                class="brand-image"
-                alt="{{ item.brand }}"
-              />
+        <!-- Brand Column -->
+        <ng-container matColumnDef="brand">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Insurer</mat-header-cell
+          >
+          <mat-cell *matCellDef="let item">
+            <div class="brandCont">
+              <div>
+                <img
+                  [src]="inService.getImage(item.brandImage)"
+                  class="brand-image"
+                  alt="{{ item.brand }}"
+                />
+              </div>
+              <div>
+                {{ item.brand }}
+              </div>
             </div>
-            <div>
-              {{ item.brand }}
-            </div>
-          </div>
-        </mat-cell>
-      </ng-container>
+          </mat-cell>
+        </ng-container>
 
-      <!-- Kind Column -->
-      <ng-container matColumnDef="kind">
-        <mat-header-cell *matHeaderCellDef mat-sort-header
-          >Kind</mat-header-cell
-        >
-        <mat-cell *matCellDef="let item">
-          <div class="brandCont">
-            <div>
-              <img
-                [src]="inService.getImage(item.kindImage)"
-                class="brand-image"
-              />
+        <!-- Kind Column -->
+        <ng-container matColumnDef="kind">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Kind</mat-header-cell
+          >
+          <mat-cell *matCellDef="let item">
+            <div class="brandCont">
+              <div>
+                <img
+                  [src]="inService.getImage(item.kindImage)"
+                  class="brand-image"
+                />
+              </div>
+              <div>
+                {{ item.kind }}
+              </div>
             </div>
-            <div>
-              {{ item.kind }}
-            </div>
-          </div>
-        </mat-cell>
-      </ng-container>
+          </mat-cell>
+        </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
 
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons
-      fxLayout
-      fxLayout.xs="column"
-      fxLayoutAlign="center"
-    ></mat-paginator>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        fxLayout
+        fxLayout.xs="column"
+        fxLayoutAlign="center"
+      ></mat-paginator>
+    </div>
   </div>
 </div>

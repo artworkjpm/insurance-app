@@ -4,7 +4,8 @@ import {
   MatTableDataSource,
   MatSort,
   MatDialogRef,
-  MatDialog
+  MatDialog,
+  MatSnackBar
 } from "@angular/material";
 import { Item } from "src/app/models/InsItem";
 import { InsService } from "src/app/services/ins.service";
@@ -22,7 +23,8 @@ export class FavTableComponent implements OnInit {
   constructor(
     public inService: InsService,
     private dialogRef: MatDialogRef<FavTableComponent>,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -47,15 +49,25 @@ export class FavTableComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  checkRemove(clicked: boolean, item: Item, index: Number) {
+  checkRemove(clicked: boolean, item: Item) {
     let deleteRef = this.dialog.open(CheckDeleteFavComponent);
     deleteRef.afterClosed().subscribe(result => {
       if (result === "remove") {
-        this.inService.addToFavTable(false, item, index);
+        this.inService.addToFavTable(false, item);
         this.ngOnInit();
+        this.openSnackBar(item, "Undo");
       } else {
         item["clicked"] = true;
       }
+    });
+  }
+
+  openSnackBar(item: Item, action: string) {
+    let snackBarRef = this.snackBar.open(item.name + " removed", action);
+    snackBarRef.onAction().subscribe(() => {
+      this.inService.addToFavTable(true, item);
+      item["clicked"] = true;
+      this.ngOnInit();
     });
   }
 }

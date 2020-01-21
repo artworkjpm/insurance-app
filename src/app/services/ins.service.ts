@@ -42,7 +42,7 @@ export class InsService {
     this.badgeCount < 0 ? (this.badgeCount = 0) : this.badgeCount;
   }
 
-  addToFavTable(clicked: any, item: Item, index: Number) {
+  addToFavTable(clicked: any, item: Item) {
     if (clicked) {
       this.incrementCount();
       this.addData(item);
