@@ -60,3 +60,12 @@ body {
 .red {
   color: red;
 }
+.cdk-overlay-pane {
+  max-width: 90vw !important;
+}
+
+@media screen and (max-width: 720px) {
+  .mat-dialog-container {
+    padding: 17px !important;
+  }
+}

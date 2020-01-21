@@ -63,7 +63,9 @@ export class FavTableComponent implements OnInit {
   }
 
   openSnackBar(item: Item, action: string) {
-    let snackBarRef = this.snackBar.open(item.name + " removed", action);
+    let snackBarRef = this.snackBar.open(item.name + " removed", action, {
+      duration: 4000
+    });
     snackBarRef.onAction().subscribe(() => {
       this.inService.addToFavTable(true, item);
       item["clicked"] = true;
