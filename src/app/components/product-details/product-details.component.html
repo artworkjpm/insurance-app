@@ -1,0 +1,32 @@
+<app-top-nav></app-top-nav>
+
+<div class="container wrapper" *ngIf="isLoaded">
+  <div>
+    <img
+      [src]="inService.getImage(items[id].brandImage)"
+      alt=""
+      class="img-brand"
+    />
+    <div class="mat-h4">Brand: {{ items[id].brand }}</div>
+  </div>
+
+  <div class="mat-h4">Product name: {{ items[id].name }}</div>
+
+  <div>
+    <img
+      [src]="inService.getImage(items[id].kindImage)"
+      alt=""
+      class="img-brand"
+    />
+    <div class="mat-h4">Kind: {{ items[id].kind }}</div>
+  </div>
+
+  <div class="mat-h4">Price: €{{ inService.getPrice(items[id].price) }}</div>
+</div>
+
+<!-- name: "Casa mia!"
+brand: "Generali"
+brandImage: "brand_generali.png"
+kind: "Hogar"
+kindImage: "kind_home.png"
+price: "300" -->

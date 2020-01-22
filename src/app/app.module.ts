@@ -14,6 +14,7 @@ import { TopNavComponent } from "./components/top-nav/top-nav.component";
 import { FavTableComponent } from "./components/fav-table/fav-table.component";
 import { CheckDeleteFavComponent } from "./components/check-delete-fav/check-delete-fav.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     InsItemComponent,
     TopNavComponent,
     FavTableComponent,
-    CheckDeleteFavComponent
+    CheckDeleteFavComponent,
+    ProductDetailsComponent
   ],
   entryComponents: [FavTableComponent, CheckDeleteFavComponent],
   imports: [

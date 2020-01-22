@@ -3,7 +3,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource, MatSort } from "@angular/material";
 import { InsService } from "src/app/services/ins.service";
 import { Item } from "../../models/InsItem";
-import { TopNavComponent } from "../top-nav/top-nav.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-home",
@@ -21,9 +21,8 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(TopNavComponent, { static: true }) childComponent: TopNavComponent;
 
-  constructor(public inService: InsService) {}
+  constructor(public inService: InsService, private router: Router) {}
   ngOnInit() {
     //I get the products OnInit in order to obtain the product kinds, hogar, coche etc
     this.inService.getInsProducts().subscribe(items => {
@@ -67,5 +66,9 @@ export class HomeComponent implements OnInit {
     this.dataSource = new MatTableDataSource(separateKind[kind]);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  onSelect(item: Item) {
+    this.router.navigate(["product", item.id]);
   }
 }

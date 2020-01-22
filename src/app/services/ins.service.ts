@@ -46,17 +46,14 @@ export class InsService {
     if (clicked) {
       this.incrementCount();
       this.addData(item);
-      //console.log("addToFavTable add:", item);
     } else {
       this.decrementCount();
       this.removeData(item);
-      //console.log("addToFavTable remove:", item);
     }
   }
 
   addData(data: object) {
     this.favDataArray.push(data);
-    //console.log("addData favDataArray:", this.favDataArray);
   }
 
   removeData(data: Item) {
@@ -64,6 +61,5 @@ export class InsService {
       .map((item: Item) => item.id)
       .indexOf(data.id);
     this.favDataArray.splice(removeItem, 1);
-    //console.log("removeData favDataArray:", this.favDataArray);
   }
 }

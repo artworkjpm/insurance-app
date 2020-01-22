@@ -18,6 +18,16 @@ body {
 }
 .name-cell {
   width: 280px;
+  cursor: pointer;
+}
+
+.hover-cell {
+  cursor: pointer;
+}
+
+.hover-cell:hover,
+.name-cell:hover {
+  color: #3f51b5;
 }
 
 .submit {
