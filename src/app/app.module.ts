@@ -14,7 +14,9 @@ import { TopNavComponent } from "./components/top-nav/top-nav.component";
 import { FavTableComponent } from "./components/fav-table/fav-table.component";
 import { CheckDeleteFavComponent } from "./components/check-delete-fav/check-delete-fav.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ProductDetailsComponent } from "./components/product-details/product-details.component";
+import { RouteReuseService } from "./services/RouteReuseService";
+import { RouteReuseStrategy } from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     HttpClientModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [{ provide: RouteReuseStrategy, useClass: RouteReuseService }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -7,10 +7,10 @@
       alt=""
       class="img-brand"
     />
-    <div class="mat-h4">Brand: {{ items[id].brand }}</div>
+    <div class="mat-h4"><strong>Brand:</strong> {{ items[id].brand }}</div>
   </div>
 
-  <div class="mat-h4">Product name: {{ items[id].name }}</div>
+  <div class="mat-h4"><strong>Product name:</strong> {{ items[id].name }}</div>
 
   <div>
     <img
@@ -18,10 +18,12 @@
       alt=""
       class="img-brand"
     />
-    <div class="mat-h4">Kind: {{ items[id].kind }}</div>
+    <div class="mat-h4"><strong>Kind:</strong> {{ items[id].kind }}</div>
   </div>
 
-  <div class="mat-h4">Price: €{{ inService.getPrice(items[id].price) }}</div>
+  <div class="mat-h4">
+    <strong>Price:</strong> €{{ inService.getPrice(items[id].price) }}
+  </div>
 </div>
 
 <!-- name: "Casa mia!"
