@@ -1,13 +1,14 @@
 import { forceToZero } from "./forceNumberZero";
 import products from "../assets/SingularCoverData/InsurProducts.json";
 
-describe("getting data sorting kinds", () => {
+describe("getting data", () => {
   //test we get the data from the json file
   it("gets the insurance products", () => {
     expect(products[0].name).toBe("Casa mia!");
   });
+});
 
-  //check we have 7 kinds of products
+describe("get the 7 kinds of products", () => {
   it("no duplicates in kind of products", () => {
     let removeDuplicates = products.filter(
       (v, i, a) => a.findIndex(t => t.kind === v.kind) === i
