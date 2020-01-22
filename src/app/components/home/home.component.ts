@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
 
   searchIns() {
     this.onSubmit = false;
-    //the form uses NgModel of this.name to decide what to filter
     this.dataSource.filter = this.name;
   }
   onClear() {
