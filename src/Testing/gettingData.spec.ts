@@ -1,4 +1,4 @@
-import { compute } from "./forceNumberZero";
+import { forceToZero } from "./forceNumberZero";
 import products from "../assets/SingularCoverData/InsurProducts.json";
 
 describe("getting data sorting kinds", () => {
@@ -23,8 +23,8 @@ describe("adding to favourites", () => {
     let counter = 1;
     counter--;
     counter--;
-    console.log(counter);
-    const result = compute(counter);
+    //console.log(counter);
+    const result = forceToZero(counter);
     expect(result).toBe(0);
   });
 });
