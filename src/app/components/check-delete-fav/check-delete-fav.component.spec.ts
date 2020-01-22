@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CheckDeleteFavComponent } from './check-delete-fav.component';
+import { CheckDeleteFavComponent } from "./check-delete-fav.component";
+import { MatDialogModule } from "@angular/material/dialog";
 
-describe('CheckDeleteFavComponent', () => {
+describe("CheckDeleteFavComponent", () => {
   let component: CheckDeleteFavComponent;
   let fixture: ComponentFixture<CheckDeleteFavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckDeleteFavComponent ]
-    })
-    .compileComponents();
+      declarations: [CheckDeleteFavComponent],
+      imports: [MatDialogModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('CheckDeleteFavComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
