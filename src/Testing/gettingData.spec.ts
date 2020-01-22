@@ -19,7 +19,7 @@ describe("getting data sorting kinds", () => {
 
 describe("adding to favourites", () => {
   //when adding to favourites, never show -1 for removing favourite click
-  it("should return 0 if input is negative", () => {
+  it("should return 0 if counter is negative", () => {
     let counter = 1;
     counter--;
     counter--;
