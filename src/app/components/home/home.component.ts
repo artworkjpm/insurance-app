@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   dataSource: any;
   insTypes: Array<{ kind: string; kindImage: string }>;
   displayedColumns: string[] = ["brand", "name", "kind", "price", "addToFav"];
+  isClicked: number;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
